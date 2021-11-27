@@ -7799,6 +7799,21 @@ stylehacks@^5.0.1:
     browserslist "^4.16.0"
     postcss-selector-parser "^6.0.4"
 
+stylelint-config-xo-scss@^0.14.0:
+  version "0.14.0"
+  resolved "https://registry.yarnpkg.com/stylelint-config-xo-scss/-/stylelint-config-xo-scss-0.14.0.tgz#377a0c86e5e95da12ad095cea38512ac9e2a7b2b"
+  integrity sha512-B+7xC8GryR85beOtuYxSNxqc7GTnOIxrGxVxpJJeUGV8T+qVg82o/mRiw0AcmXIulqQtJIsgomcmeZI5wEtrAg==
+  dependencies:
+    stylelint-config-xo "^0.20.0"
+    stylelint-scss "^3.18.0"
+
+stylelint-config-xo-space@^0.15.1:
+  version "0.15.1"
+  resolved "https://registry.yarnpkg.com/stylelint-config-xo-space/-/stylelint-config-xo-space-0.15.1.tgz#1bab907b5f909e2aa718442389fb25504cc71f34"
+  integrity sha512-vLKTV625vKQzv7tYY0HvsNuw2EFBcc/wcbDukZE8DUxD7rXINQLErY1Mlx35V32wiS7ety33TJEUEvOL5lyHMQ==
+  dependencies:
+    stylelint-config-xo "^0.20.0"
+
 stylelint-config-xo@^0.20.0:
   version "0.20.1"
   resolved "https://registry.yarnpkg.com/stylelint-config-xo/-/stylelint-config-xo-0.20.1.tgz#385bb182fec6f6b6cd05eebb068a3aae7f4b2097"
@@ -7820,6 +7835,17 @@ stylelint-order@^4.1.0:
     lodash "^4.17.15"
     postcss "^7.0.31"
     postcss-sorting "^5.0.1"
+
+stylelint-scss@^3.18.0:
+  version "3.21.0"
+  resolved "https://registry.yarnpkg.com/stylelint-scss/-/stylelint-scss-3.21.0.tgz#9f50898691b16b1c1ca3945837381d98c5b22331"
+  integrity sha512-CMI2wSHL+XVlNExpauy/+DbUcB/oUZLARDtMIXkpV/5yd8nthzylYd1cdHeDMJVBXeYHldsnebUX6MoV5zPW4A==
+  dependencies:
+    lodash "^4.17.15"
+    postcss-media-query-parser "^0.2.3"
+    postcss-resolve-nested-selector "^0.1.1"
+    postcss-selector-parser "^6.0.2"
+    postcss-value-parser "^4.1.0"
 
 stylelint@^13.13.1:
   version "13.13.1"

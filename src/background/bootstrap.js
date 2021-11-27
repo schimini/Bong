@@ -1,16 +1,16 @@
 import browser from 'webextension-polyfill';
 import optionsStorage from '../utl/options-storage.js';
+
 const start = async function () {
-  "use strict";
-  var use_custom_engine;
-  var custom_engine;
-  var storageChange;
-  var enable_open_website;
-  var cortana_only;
-  var exclude_settings_app;
+  let use_custom_engine;
+  let custom_engine;
+  let storageChange;
+  let enable_open_website;
+  let cortana_only;
+  let exclude_settings_app;
   function convertURL(url) {
-    var querystringparams = getUrlVars(url);
-    var source = getKeyValue(querystringparams, "form");
+    const querystringparams = getUrlVars(url);
+    const source = getKeyValue(querystringparams, "form");
     if (cortana_only === true) {
       //Cortana is not the source don't redirect
       if (source !== "WNSGPH" && source !== "WNSBOX") {
@@ -26,11 +26,11 @@ const start = async function () {
     }
 
     url = url.replace(/%20/g, "+");
-    var uri = /\?q\=([0-9a-zA-Z-._~:\/?#[\]@!$'()*+,;=%]*)($|(\&))/.exec(
+    let uri = /\?q\=([0-9a-zA-Z-._~:\/?#[\]@!$'()*+,;=%]*)($|(\&))/.exec(
       url
     )[1];
     if (enable_open_website === true) {
-      var match =
+      const match =
         /^((go\+to\+)|(open\+)|())([0-9a-zA-Z-._~:\/?#[\]@!$'()*+,;=%]*\.[a-z]+)/i.exec(
           uri
         );
@@ -53,7 +53,7 @@ const start = async function () {
     return "https://www.google.com/search?q=" + uri;
   }
   function getUrlVars(url) {
-    var vars = [],
+    const vars = [],
       hash;
     var hashes = url.slice(url.indexOf("?") + 1).split("&");
     for (var i = 0; i < hashes.length; i++) {
