@@ -1,8 +1,8 @@
 (function() {
   "use strict";
-  // Fallback when Chrome is not already running
+  // Fallback when Browser is not already running
   var url = location.href;
-  chrome.runtime.sendMessage({ action: "convertURL", url: url }, function(
+  browser.runtime.sendMessage({ action: "convertURL", url: url }, function(
     response,
   ) {
     if (response !== url) {

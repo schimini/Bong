@@ -44,4 +44,4 @@ Previous contributors include: [Claire Pitman](https://github.com/ClairePitman),
 
 Logo designed by [Preston Locke](https://github.com/Preston12321)
 
-A lot of code taken from https://github.com/drewctate/preact-chrome-extension-starter
+A lot of code taken from https://github.com/drewctate/preact-chrome-extension-starter and https://github.com/fregante/browser-extension-template

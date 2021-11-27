@@ -5,28 +5,33 @@
   "description": "Redirect all Bing (and therefore Cortana) searches to a search engine of your choice!",
   "version": "3.0.0",
   "permissions": [
-    "*://*.bing.com/",
     "webRequest",
     "webRequestBlocking",
     "storage",
-    "background"
+    "background",
+    "*://*.bing.com/"
   ],
   "background": {
-    "scripts": ["background/bootstrap.js"]
+    "scripts": ["./src/background/bootstrap.js"]
   },
   "content_scripts": [
     {
       "matches": ["*://*.bing.com/search*"],
-      "js": ["background/redirect.js"]
+      "js": ["./src/background/redirect.js"]
     }
   ],
   "icons": {
-    "32": "images/logo-32.png",
-    "64": "images/logo-64.png",
-    "128": "images/logo-128.png"
+    "32": "./src/images/logo-32.png",
+    "64": "./src/images/logo-64.png",
+    "128": "./src/images/logo-128.png"
   },
   "browser_action": {
     "default_title": "Chrometana",
-    "default_popup": "options.html"
-  }
+    "default_popup": "./src/options.html"
+  },
+  "web_accessible_resources": [
+    "./src/images/duck.png",
+    "./src/images/google.png",
+    "./src/images/yahoo.png"
+  ]
 }

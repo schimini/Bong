@@ -1,4 +1,6 @@
-(function() {
+import browser from 'webextension-polyfill';
+import optionsStorage from '../utl/options-storage.js';
+const start = async function () {
   "use strict";
   var use_custom_engine;
   var custom_engine;
@@ -25,12 +27,13 @@
 
     url = url.replace(/%20/g, "+");
     var uri = /\?q\=([0-9a-zA-Z-._~:\/?#[\]@!$'()*+,;=%]*)($|(\&))/.exec(
-      url,
+      url
     )[1];
     if (enable_open_website === true) {
-      var match = /^((go\+to\+)|(open\+)|())([0-9a-zA-Z-._~:\/?#[\]@!$'()*+,;=%]*\.[a-z]+)/i.exec(
-        uri,
-      );
+      var match =
+        /^((go\+to\+)|(open\+)|())([0-9a-zA-Z-._~:\/?#[\]@!$'()*+,;=%]*\.[a-z]+)/i.exec(
+          uri
+        );
       if (match) {
         return "http://" + match[5];
       }
@@ -66,45 +69,16 @@
     }
     return "";
   }
+  const options = await optionsStorage.getAll();
+  use_custom_engine = options.use_custom_engine;
+  storageChange = options.search_engine;
+  enable_open_website = options.enable_open_website;
+  cortana_only = options.cortana_only;
+  exclude_settings_app = options.exclude_settings_app;
+  custom_engine = options.custom_engine;
+  console.log("Fetched values", options);
 
-  function setDefaults() {
-    chrome.storage.sync.set(
-      {
-        use_custom_engine: false,
-        search_engine: "Google.com",
-        custom_engine: "",
-        enable_open_website: true,
-        cortana_only: false,
-        exclude_settings_app: true,
-      },
-      () => {},
-    );
-  }
-
-  chrome.storage.sync.get(
-    [
-      "use_custom_engine",
-      "search_engine",
-      "custom_engine",
-      "enable_open_website",
-      "cortana_only",
-      "exclude_settings_app",
-    ],
-    function(obj) {
-      use_custom_engine = obj.use_custom_engine;
-      storageChange = obj.search_engine;
-      enable_open_website = obj.enable_open_website;
-      cortana_only = obj.cortana_only;
-      exclude_settings_app = obj.exclude_settings_app;
-      custom_engine = obj.custom_engine;
-      console.log("Fetched values", obj);
-      if (obj.use_custom_engine === undefined) {
-        setDefaults();
-      }
-    },
-  );
-
-  chrome.storage.onChanged.addListener(function(changes) {
+  browser.storage.onChanged.addListener(function (changes) {
     if (typeof changes.search_engine !== "undefined") {
       storageChange = changes.search_engine.newValue;
     }
@@ -125,23 +99,24 @@
     }
   });
 
-  chrome.webRequest.onBeforeRequest.addListener(
-    function(details) {
+  browser.webRequest.onBeforeRequest.addListener(
+    function (details) {
       var newurl = convertURL(details.url);
       if (newurl !== details.url) {
         return { redirectUrl: newurl };
       }
     },
     { urls: ["*://*.bing.com/search*"] },
-    ["blocking"],
+    ["blocking"]
   );
 
-  // Fallback when Chrome is not already running
-  chrome.runtime.onMessage.addListener(onMessage);
+  // Fallback when Browser is not already running
+  browser.runtime.onMessage.addListener(onMessage);
   function onMessage(request, sender, callback) {
     if (request.action === "convertURL") {
       callback(convertURL(request.url));
     }
     return true;
   }
-})();
+};
+start();
