@@ -1,10 +1,9 @@
-(function() {
-  "use strict";
+import browser from "webextension-polyfill";
+
+(function () {
   // Fallback when Browser is not already running
-  var url = location.href;
-  browser.runtime.sendMessage({ action: "convertURL", url: url }, function(
-    response,
-  ) {
+  const url = location.href;
+  browser.runtime.sendMessage({ action: "convertURL", url }, response => {
     if (response !== url) {
       location.href = response;
     }

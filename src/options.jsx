@@ -1,5 +1,4 @@
-import { h, render } from 'preact';
-import App from './pages/options/app';
-import browser from 'webextension-polyfill';
+import { render } from "preact";
+import App from "./pages/options/app";
 
-render(<App />, document.body);
+render(<App/>, document.body);

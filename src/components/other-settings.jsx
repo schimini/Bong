@@ -1,14 +1,15 @@
 import { useBrowserStorage } from "../hooks/use-browser-storage";
+
 export const OtherSettings = () => {
   const [openWebsite, setOpenWebsite] = useBrowserStorage(
-    "enable_open_website",
+    "enableOpenWebsite",
     false
   );
   const [excludeSettings, setExcludeSettings] = useBrowserStorage(
-    "exclude_settings_app",
+    "excludeSettingsApp",
     true
   );
-  const [cortanaOnly, setCortanaOnly] = useBrowserStorage("cortana_only", true);
+  const [cortanaOnly, setCortanaOnly] = useBrowserStorage("cortanaOnly", true);
 
   return (
     <div className="flex-column">
@@ -18,9 +19,9 @@ export const OtherSettings = () => {
           id="open-website-command"
           name="Open Website"
           checked={openWebsite}
-          onChange={(e) => setOpenWebsite(e.target.checked)}
+          onChange={event => setOpenWebsite(event.target.checked)}
         />
-        <label for="open-website-command">Enable "open website" command</label>
+        <label htmlFor="open-website-command">Enable &quot;open website&quot; command</label>
       </div>
       <div>
         <input
@@ -28,9 +29,9 @@ export const OtherSettings = () => {
           id="exclude-settings"
           name="Exclude Settings"
           checked={excludeSettings}
-          onChange={(e) => setExcludeSettings(e.target.checked)}
+          onChange={event => setExcludeSettings(event.target.checked)}
         />
-        <label for="exclude-settings">
+        <label htmlFor="exclude-settings">
           Exclude searches made by the Settings app
         </label>
       </div>
@@ -40,9 +41,9 @@ export const OtherSettings = () => {
           id="cortana-only"
           name="Cortana Only"
           checked={cortanaOnly}
-          onChange={(e) => setCortanaOnly(e.target.checked)}
+          onChange={event => setCortanaOnly(event.target.checked)}
         />
-        <label for="cortana-only">Only redirect Cortana searches</label>
+        <label htmlFor="cortana-only">Only redirect Cortana searches</label>
       </div>
     </div>
   );
