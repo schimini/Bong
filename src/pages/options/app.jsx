@@ -10,8 +10,8 @@ const App = () => {
   return (
     <div id="app-root">
       <div>
-        {!page && <SearchSelector />}
-        {page && (<AdditionalSettings />)}
+        {!page && <SearchSelector/>}
+        {page && <AdditionalSettings/>}
         <button
           type="button"
           className="additional-settings pure-button"

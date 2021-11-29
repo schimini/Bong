@@ -1,7 +1,7 @@
 import { useEffect, useState } from "preact/hooks";
 import optionsStorage from "../utl/options-storage";
 
-export const fromStorage = (key, initialValue) => {
+export const useFromStorage = (key, initialValue) => {
   const l = useBrowserStorage(key, initialValue);
   useEffect(() => {
     async function setInitial() {
@@ -10,7 +10,7 @@ export const fromStorage = (key, initialValue) => {
     }
 
     setInitial();
-  }, []);
+  }, [key, l]);
   return l[0];
 };
 
@@ -19,10 +19,11 @@ export function useBrowserStorage(key, initialValue) {
     if (initialValue) {
       optionsStorage.set({ [key]: initialValue });
     }
+
     return initialValue;
   });
 
-  const setValue = async (value) => {
+  const setValue = async value => {
     const newValue = value instanceof Function ? value(storedValue) : value;
     optionsStorage.set({ [key]: newValue });
     setStoredValue(newValue);
