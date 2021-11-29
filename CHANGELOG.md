@@ -1,5 +1,21 @@
 ## Changelog
 
+### v4.0.0
+
+I've stolen chrometana and improved it a bit. It works on opera which was my main goal. Also stolen build scripts and utilities from fregante's browser-extension template. 
+
+##### New features
+
+- It works on opera. Without having to set weird options in the extensions menu.
+- Fix logos path
+- Updated name and logo. I didn't wanted to rip off Chrometana like Chrometana-Pro did.
+
+##### Development
+
+- Add github actions to automate testing and releasing.
+- Refactor frontend to look more like a react app: components are now separated, etc
+- Add very very very very opinionated linter
+
 ### v3.0.0
 
 It's been awhile guys. Sorry for the long time between updates. Wanted to leave this in a better state

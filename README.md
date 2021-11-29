@@ -1,15 +1,12 @@
-# Chrometana
+# Bong
 
-![Logo](images/logo-128.png)
+![Logo](src/images/logo-128.png)
 
 Cortana always goes to Bing. I don't like Bing. This lets you redirect Cortana to other places.
 
 Open to contributions, just file a PR!
 
-[Chrome Web Store](https://chrome.google.com/webstore/detail/kaicbfmipfpfpjmlbpejaoaflfdnabnc)
-(Edge Store soon, use this for now)
-
-[Chrometana blog](http://Chrometana.Theo.li)
+[Not yet] [Chrome Web Store](https://chrome.google.com/webstore/detail/mbbgkkdlmfdbchafakhpioopolaodgff)
 
 
 ## Notes
@@ -25,28 +22,25 @@ On Opera active search thingy on extension settings
 1. Install dependencies
 
 ```
-npm install
+yarn
 ```
 
-2.  Build the front-end
+2.  Build/Watch the front-end
 
 ```
-  npm run build
+  yarn build
+  yarn watch
 ```
 
-3. Navigate chrome to `chrome://extensions`
+3. Navigate chrome to `chrome://extensions` or to your favorite browser extension page
 4. Check the `Developer mode` toggle
 5. Click on `Load Unpacked Extension...`
-6. Select the `dist` directory
-
-Remember to re-run `npm run build` after making changes!
+6. Select the `distribution` directory
 
 ## Credits
 
-Created and maintained by [Theo Browne](http://www.t3.gg)
+Originally created by [Theo Browne](http://www.t3.gg) and a few other contributors.
 
-Previous contributors include: [Claire Pitman](https://github.com/ClairePitman), [Gray Tambling](https://github.com/the-graytest), [Kyle Ladd](https://github.com/kyleladd), and [Maayan Kline](https://github.com/mok8)
-
-Logo designed by [Preston Locke](https://github.com/Preston12321)
+Forked from https://github.com/TheoBr/Chrometana
 
 A lot of code taken from https://github.com/drewctate/preact-chrome-extension-starter and https://github.com/fregante/browser-extension-template

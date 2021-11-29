@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
-  "name": "Chrometana - Redirect Bing Somewhere Better",
-  "short_name": "Chrometana",
+  "name": "Bong - Because Bing is no more",
+  "short_name": "Bong",
   "description": "Redirect all Bing (and therefore Cortana) searches to a search engine of your choice!",
   "version": "3.0.0",
   "permissions": [
@@ -16,24 +16,19 @@
     "matches": ["*://*.bing.com/search*"],
     "scripts": ["./src/background/bootstrap.js"]
   },
-  "content_scripts": [
-    {
-      "matches": ["*://*.bing.com/search*"],
-      "js": ["./src/background/redirect.js"]
-    }
-  ],
   "icons": {
     "32": "./src/images/logo-32.png",
     "64": "./src/images/logo-64.png",
     "128": "./src/images/logo-128.png"
   },
   "browser_action": {
-    "default_title": "Chrometana",
+    "default_title": "Bong",
     "default_popup": "./src/options.html"
   },
   "web_accessible_resources": [
     "./src/images/duck.png",
     "./src/images/google.png",
-    "./src/images/yahoo.png"
+    "./src/images/yahoo.png",
+    "./src/images/bong.png"
   ]
 }

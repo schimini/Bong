@@ -24,9 +24,9 @@ const start = async function () {
     const uri = /\?q=([\w-.~:/?#[\]@!$'()*+,;=%]*)($|(&))/.exec(url)[1];
     if (enableOpenWebsite === true) {
       const match
-        = /^((go\+to\+)|(open\+)|())([\w-.~:/?#[\]@!$'()*+,;=%]*\.[a-z]+)/i.exec(
-          uri
-        );
+      = /^((go\+to\+)|(open\+)|())([\w-.~:/?#[\]@!$'()*+,;=%]*\.[a-z]+)/i.exec(
+        uri
+      );
       if (match) {
         return "http://" + match[5];
       }
@@ -84,6 +84,18 @@ const start = async function () {
   browser.storage.onChanged.addListener(() => {
     updateOptions();
   });
+  const activeTabs = await browser.tabs.query({
+    url: ["*://*.bing.com/search*"]
+  });
+  console.log(activeTabs);
+  for (const navigate of activeTabs
+    .filter(element => element.groupId === -1)) {
+    console.log(navigate);
+    const newurl = convertURL(navigate.url);
+    browser.tabs.update(navigate.id, {
+      url: newurl
+    });
+  }
 
   browser.webNavigation.onBeforeNavigate.addListener(
     navigate => {
@@ -104,16 +116,6 @@ const start = async function () {
       ]
     }
   );
-
-  // Fallback when Browser is not already running
-  browser.runtime.onMessage.addListener(onMessage);
-  function onMessage(request, sender, callback) {
-    if (request.action === "convertURL") {
-      callback(convertURL(request.url));
-    }
-
-    return true;
-  }
 };
 
 start();
