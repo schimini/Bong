@@ -1,7 +1,7 @@
-import { useBrowserStorage } from "../hooks/use-browser-storage";
+import { fromStorage } from "../hooks/use-browser-storage";
 
 export const SearchSelector = () => {
-  const [engine, setEngine] = useBrowserStorage("searchEngine");
+  const [engine, setEngine] = fromStorage("searchEngine");
   return (
     <div id="app-root">
       <h2>Select your preferred search engine</h2>

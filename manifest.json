@@ -5,13 +5,15 @@
   "description": "Redirect all Bing (and therefore Cortana) searches to a search engine of your choice!",
   "version": "3.0.0",
   "permissions": [
-    "webRequest",
-    "webRequestBlocking",
+    "webNavigation",
     "storage",
     "background",
+    "tabs",
     "*://*.bing.com/"
   ],
+  "content_security_policy": "script-src 'self'; object-src 'self'",
   "background": {
+    "matches": ["*://*.bing.com/search*"],
     "scripts": ["./src/background/bootstrap.js"]
   },
   "content_scripts": [

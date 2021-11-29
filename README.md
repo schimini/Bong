@@ -11,6 +11,11 @@ Open to contributions, just file a PR!
 
 [Chrometana blog](http://Chrometana.Theo.li)
 
+
+## Notes
+
+On Opera active search thingy on extension settings
+
 ## Changelog
 
 [Changelog](CHANGELOG.md)

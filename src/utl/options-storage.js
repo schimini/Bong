@@ -7,7 +7,7 @@ export default new OptionsSync({
     customEngine: "",
     enableOpenWebsite: false,
     excludeSettingsApp: true,
-    cortanaOnly: true
+    cortanaOnly: false
   },
   migrations: [
     OptionsSync.migrations.removeUnused

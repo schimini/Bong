@@ -1,9 +1,9 @@
-import { useBrowserStorage } from "../hooks/use-browser-storage";
+import { fromStorage } from "../hooks/use-browser-storage";
 
 export const CustomEngineSelect = () => {
-  const [isCustomEngineChecked, setUseCustomEngine]
-    = useBrowserStorage("useCustomEngine");
-  const [customEngine, setCustomEngine] = useBrowserStorage("customEngine");
+  const [isCustomEngineChecked, setUseCustomEngine] =
+    fromStorage("useCustomEngine");
+  const [customEngine, setCustomEngine] = fromStorage("customEngine");
 
   return (
     <div>
@@ -12,7 +12,7 @@ export const CustomEngineSelect = () => {
         id="custom"
         name="Custom Search Engine"
         checked={isCustomEngineChecked}
-        onChange={event => setUseCustomEngine(event.target.checked)}
+        onChange={(event) => setUseCustomEngine(event.target.checked)}
       />
       <label htmlFor="custom">Custom Search Engine</label>
       {isCustomEngineChecked && (
@@ -22,7 +22,7 @@ export const CustomEngineSelect = () => {
             id="custom-engine-url"
             name="Custom Engine URL"
             defaultValue={customEngine}
-            onChange={event => setCustomEngine(event.target.value)}
+            onChange={(event) => setCustomEngine(event.target.value)}
           />
           <label htmlFor="custom-engine-url">Custom Engine URL</label>
         </div>

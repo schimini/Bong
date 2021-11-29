@@ -1,15 +1,12 @@
-import { useBrowserStorage } from "../hooks/use-browser-storage";
-
+import { fromStorage } from "../hooks/use-browser-storage";
 export const OtherSettings = () => {
-  const [openWebsite, setOpenWebsite] = useBrowserStorage(
-    "enableOpenWebsite",
-    false
+  const [openWebsite, setOpenWebsite] = fromStorage(
+    "enableOpenWebsite"
   );
-  const [excludeSettings, setExcludeSettings] = useBrowserStorage(
-    "excludeSettingsApp",
-    true
+  const [excludeSettings, setExcludeSettings] = fromStorage(
+    "excludeSettingsApp"
   );
-  const [cortanaOnly, setCortanaOnly] = useBrowserStorage("cortanaOnly", true);
+  const [cortanaOnly, setCortanaOnly] = fromStorage("cortanaOnly");
 
   return (
     <div className="flex-column">

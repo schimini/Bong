@@ -11,16 +11,17 @@ const start = async function () {
   function convertURL(url) {
     const querystringparams = getUrlVars(url);
     const source = getKeyValue(querystringparams, "form");
-    if ((cortanaOnly === true && source !== "WNSGPH" && source !== "WNSBOX") || (excludeSettingsApp === true && source === "S00028")) {
+    if (
+      (cortanaOnly === true && source !== "WNSGPH" && source !== "WNSBOX")
+      || (excludeSettingsApp === true && source === "S00028")
+    ) {
       // Cortana is not the source don't redirect
       // Settings app source
       return url;
     }
 
     url = url.replace(/%20/g, "+");
-    const uri = /\?q=([\w-.~:/?#[\]@!$'()*+,;=%]*)($|(&))/.exec(
-      url
-    )[1];
+    const uri = /\?q=([\w-.~:/?#[\]@!$'()*+,;=%]*)($|(&))/.exec(url)[1];
     if (enableOpenWebsite === true) {
       const match
         = /^((go\+to\+)|(open\+)|())([\w-.~:/?#[\]@!$'()*+,;=%]*\.[a-z]+)/i.exec(
@@ -39,15 +40,11 @@ const start = async function () {
       return "https://www.google.com/search?q=" + uri;
     }
 
-    if (storageChange === "DuckDuckGo.com") {
-      return "https://www.duckduckgo.com?q=" + uri;
-    }
-
     if (storageChange === "Yahoo.com") {
       return "https://search.yahoo.com/search?p=" + uri;
     }
 
-    return "https://www.google.com/search?q=" + uri;
+    return "https://www.duckduckgo.com?q=" + uri;
   }
 
   function getUrlVars(url) {
@@ -71,50 +68,41 @@ const start = async function () {
     return "";
   }
 
-  const options = await optionsStorage.getAll();
-  useCustomEngine = options.useCustomEngine;
-  storageChange = options.searchEngine;
-  enableOpenWebsite = options.enableOpenWebsite;
-  cortanaOnly = options.cortanaOnly;
-  excludeSettingsApp = options.excludeSettingsApp;
-  customEngine = options.customEngine;
-  console.log("Fetched values", options);
+  async function updateOptions() {
+    const options = await optionsStorage.getAll();
+    useCustomEngine = options.useCustomEngine;
+    storageChange = options.searchEngine;
+    enableOpenWebsite = options.enableOpenWebsite;
+    cortanaOnly = options.cortanaOnly;
+    excludeSettingsApp = options.excludeSettingsApp;
+    customEngine = options.customEngine;
+    console.log("Fetched values", options);
+  }
 
-  browser.storage.onChanged.addListener(changes => {
-    if (typeof changes.searchEngine !== "undefined") {
-      storageChange = changes.searchEngine.newValue;
-    }
+  updateOptions();
 
-    if (typeof changes.customEngine !== "undefined") {
-      customEngine = changes.customEngine.newValue;
-    }
-
-    if (typeof changes.enableOpenWebsite !== "undefined") {
-      enableOpenWebsite = changes.enableOpenWebsite.newValue;
-    }
-
-    if (typeof changes.cortanaOnly !== "undefined") {
-      cortanaOnly = changes.cortanaOnly.newValue;
-    }
-
-    if (typeof changes.excludeSettingsApp !== "undefined") {
-      excludeSettingsApp = changes.excludeSettingsApp.newValue;
-    }
-
-    if (typeof changes.useCustomEngine !== "undefined") {
-      useCustomEngine = changes.useCustomEngine.newValue;
-    }
+  browser.storage.onChanged.addListener(() => {
+    updateOptions();
   });
 
-  browser.webRequest.onBeforeRequest.addListener(
-    details => {
-      const newurl = convertURL(details.url);
-      if (newurl !== details.url) {
-        return { redirectUrl: newurl };
+  browser.webNavigation.onBeforeNavigate.addListener(
+    navigate => {
+      console.log(navigate);
+      if (navigate.parentFrameId === -1) {
+        const newurl = convertURL(navigate.url);
+        browser.tabs.update(navigate.tabId, {
+          url: newurl
+        });
       }
     },
-    { urls: ["*://*.bing.com/search*"] },
-    ["blocking"]
+    {
+      url: [
+        {
+          hostSuffix: "bing.com",
+          pathPrefix: "/search"
+        }
+      ]
+    }
   );
 
   // Fallback when Browser is not already running
