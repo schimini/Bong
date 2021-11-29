@@ -2,7 +2,13 @@
 
 ![Logo](src/images/logo-128.png)
 
-Cortana always goes to Bing. I don't like Bing. This lets you redirect Cortana to other places.
+Bong - Because Bing is no more
+
+Redirect all Bing (and therefore Cortana) searches to a search engine of your choice!
+
+Microsoft's web team has always been ahead. Like a bit too much. From Internet Explorer to Bing they got it all. That's why this extension serves as a boycott. Because they are just too good. 
+
+Bong serves its full purpose when used with the great Edge Deflector (https://github.com/da2x/EdgeDeflector) 
 
 Open to contributions, just file a PR!
 
