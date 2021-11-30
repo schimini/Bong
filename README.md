@@ -13,6 +13,7 @@ Bong serves its full purpose when used with the great Edge Deflector (https://gi
 Open to contributions, just file a PR!
 
 [Firefox Addons](https://addons.mozilla.org/en-US/firefox/addon/bong/)
+
 [Not yet] [Chrome Web Store](https://chrome.google.com/webstore/detail/mbbgkkdlmfdbchafakhpioopolaodgff)
 
 
