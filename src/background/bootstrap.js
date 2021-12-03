@@ -76,7 +76,6 @@ const start = async function () {
     cortanaOnly = options.cortanaOnly;
     excludeSettingsApp = options.excludeSettingsApp;
     customEngine = options.customEngine;
-    console.log("Fetched values", options);
   }
 
   updateOptions();
@@ -87,11 +86,9 @@ const start = async function () {
   const activeTabs = await browser.tabs.query({
     url: ["*://*.bing.com/search*"]
   });
-  console.log(activeTabs);
   for (const navigate of activeTabs
     .filter(element => element.groupId === -1)) {
-    console.log(navigate);
-    const newurl = convertURL(navigate.url);
+    const newurl = convertURL(navigate.url || navigate.pendingUrl);
     browser.tabs.update(navigate.id, {
       url: newurl
     });
@@ -99,7 +96,6 @@ const start = async function () {
 
   browser.webNavigation.onBeforeNavigate.addListener(
     navigate => {
-      console.log(navigate);
       if (navigate.parentFrameId === -1) {
         const newurl = convertURL(navigate.url);
         browser.tabs.update(navigate.tabId, {

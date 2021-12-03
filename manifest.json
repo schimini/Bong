@@ -3,7 +3,7 @@
   "name": "Bong - Because Bing is no more",
   "short_name": "Bong",
   "description": "Redirect all Bing (and therefore Cortana) searches to a search engine of your choice!",
-  "version": "3.0.0",
+  "version": "4.0.0",
   "permissions": [
     "webNavigation",
     "storage",
