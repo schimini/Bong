@@ -16,11 +16,6 @@ Open to contributions, just file a PR!
 
 [Not yet] [Chrome Web Store](https://chrome.google.com/webstore/detail/mbbgkkdlmfdbchafakhpioopolaodgff)
 
-
-## Notes
-
-On Opera active search thingy on extension settings
-
 ## Changelog
 
 [Changelog](CHANGELOG.md)
