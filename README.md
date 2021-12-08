@@ -14,7 +14,7 @@ Open to contributions, just file a PR!
 
 [Firefox Addons](https://addons.mozilla.org/en-US/firefox/addon/bong/)
 
-[Not yet] [Chrome Web Store](https://chrome.google.com/webstore/detail/mbbgkkdlmfdbchafakhpioopolaodgff)
+[Chrome Web Store](https://chrome.google.com/webstore/detail/mbbgkkdlmfdbchafakhpioopolaodgff)
 
 ## Changelog
 
